@@ -52,12 +52,12 @@ class BaseController extends Controller
 	}
 
 	// custom functions
-	protected function getCurrentUser()
+	protected function getUser()
 	{
 		$userModel = new UserModel();
-		$currentUser = $userModel->find(session('id'));
+		$user = $userModel->find(session('id'));
 
-		return $currentUser;
+		return $user;
 	}
 
 	protected function getOffices()

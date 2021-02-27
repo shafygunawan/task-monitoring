@@ -8,7 +8,7 @@ class Office extends BaseController
     {
         $data = [
             'title' => 'Offices | Task Monitoring',
-            'currentUser' => $this->getCurrentUser(),
+            'user' => $this->getUser(),
             'offices' => $this->getOffices()
         ];
 

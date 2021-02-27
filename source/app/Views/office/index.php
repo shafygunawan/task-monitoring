@@ -21,7 +21,7 @@
                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Keluar Dinas</a>
+                                <a class="dropdown-item" href="#">Keluar Kantor</a>
                                 <a class="dropdown-item" href="#">Laporkan Penyalahgunaan</a>
                             </div>
                         </div>

@@ -35,7 +35,7 @@ class isNotLoggedInFilter implements FilterInterface
         $hasSession = session('id') !== null;
 
         if ($hasSession) {
-            return redirect()->to('/office');
+            return redirect()->to('/offices');
         }
     }
 
