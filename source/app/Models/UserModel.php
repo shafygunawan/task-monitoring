@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $primaryKey = 'userId';
     protected $useAutoIncrement = true;
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $createdField  = 'userCreatedAt';
     protected $updatedField  = 'userUpdatedAt';
 

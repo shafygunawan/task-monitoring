@@ -34,6 +34,9 @@ $routes->setAutoRoute(false);
 // login routes
 $routes->get('/', 'Login::index');
 $routes->post('/', 'Login::auth');
+// register routes
+$routes->get('/register', 'Register::index');
+$routes->post('/register', 'Register::save');
 
 /*
  * --------------------------------------------------------------------

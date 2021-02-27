@@ -21,9 +21,9 @@ class Login extends BaseController
         // cek validasi form
         $rules = [
             'email' => 'required|valid_email|max_length[100]',
-            'password' => 'required|max_length[100]',
+            'password' => 'required|min_length[8]|max_length[255]',
         ];
-        $message = [
+        $messages = [
             'email' => [
                 'required' => 'Email wajib diisi',
                 'valid_email' => 'Email yang anda masukkan tidak valid',
@@ -31,11 +31,12 @@ class Login extends BaseController
             ],
             'password' => [
                 'required' => 'Password wajib diisi',
+                'min_length' => 'Panjang password minimal 8 karakter',
                 'max_length' => 'Panjang karakter melebihi batas maksimum'
             ]
         ];
 
-        if ($this->validate($rules, $message)) {
+        if ($this->validate($rules, $messages)) {
             // cek apakah user valid
             $email = $_POST['email'];
             $password = hash('sha256', $_POST['password']); // password asli posisi terenkripsi

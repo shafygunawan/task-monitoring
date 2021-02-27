@@ -35,6 +35,11 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <?php if (session()->getFlashdata('success')) : ?>
+                                            <div class="alert alert-success" role="alert">
+                                                <?= session()->getFlashdata('success'); ?>
+                                            </div>
+                                        <?php endif; ?>
                                         <?php if (session()->getFlashdata('failed')) : ?>
                                             <div class="alert alert-danger" role="alert">
                                                 <?= session()->getFlashdata('failed'); ?>
@@ -67,10 +72,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.html">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="/register">Create an Account!</a>
+                                        <a class="small" href="/register">Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>
