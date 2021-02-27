@@ -60,7 +60,7 @@ class Login extends BaseController
 
                 // set session dan redirect ke office
                 session()->set('id', $user['userId']);
-                return redirect()->to('/office');
+                return redirect()->to('/offices');
             }
 
             session()->setFlashdata('failed', 'Email atau Password salah!');

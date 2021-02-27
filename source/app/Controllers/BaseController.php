@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\AffiliationModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -47,5 +49,22 @@ class BaseController extends Controller
 		// E.g.: $this->session = \Config\Services::session();
 
 		$this->session = \Config\Services::session();
+	}
+
+	// custom functions
+	protected function getCurrentUser()
+	{
+		$userModel = new UserModel();
+		$currentUser = $userModel->find(session('id'));
+
+		return $currentUser;
+	}
+
+	protected function getOffices()
+	{
+		$affiliationModel = new AffiliationModel();
+		$offices = $affiliationModel->where('userId', session('id'))->join('offices', 'offices.officeId = affiliations.affiliationId')->findAll();
+
+		return $offices;
 	}
 }

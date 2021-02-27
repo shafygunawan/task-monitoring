@@ -37,6 +37,10 @@ $routes->post('/', 'Login::auth');
 // register routes
 $routes->get('/register', 'Register::index');
 $routes->post('/register', 'Register::save');
+// office routes
+$routes->get('/offices', 'Office::index');
+// logout routes
+$routes->get('/logout', 'Login::logout');
 
 /*
  * --------------------------------------------------------------------
