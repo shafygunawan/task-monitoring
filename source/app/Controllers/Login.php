@@ -52,8 +52,9 @@ class Login extends BaseController
                 $rememberMe = isset($_POST['rememberMe']);
                 if ($rememberMe) {
                     $expiredTime = time() + 60 * 60 * 24 * 3;
+                    $encryptedEmail = hash('sha256', $user['userEmail']); // enkripsi email untuk dijadikan cookie
                     setcookie('key', $user['userId'], $expiredTime);
-                    setcookie('value', $user['userEmail'], $expiredTime);
+                    setcookie('value', $encryptedEmail, $expiredTime);
                 }
 
                 // set session dan redirect ke office
@@ -66,5 +67,15 @@ class Login extends BaseController
         }
 
         return redirect()->back()->withInput();
+    }
+
+    public function logout()
+    {
+        // hapus session dan cookie
+        session()->destroy();
+        setcookie('key', '', time() - 3600);
+        setcookie('value', '', time() - 3600);
+
+        return redirect()->to('/');
     }
 }
