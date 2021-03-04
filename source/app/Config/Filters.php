@@ -19,8 +19,10 @@ class Filters extends BaseConfig
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
-		'isLoggedIn' => \App\Filters\isLoggedInFilter::class,
-		'isNotLoggedIn' => \App\Filters\isNotLoggedInFilter::class,
+		'isLogin' => \App\Filters\IsLoginFilter::class,
+		'isNotLogin' => \App\Filters\IsNotLoginFilter::class,
+		'office' => \App\Filters\OfficeFilter::class,
+		'task' => \App\Filters\TaskFilter::class
 	];
 
 	/**
@@ -33,6 +35,9 @@ class Filters extends BaseConfig
 		'before' => [
 			// 'honeypot',
 			// 'csrf',
+			'office' => [
+				'except' => ['', 'register', 'offices', 'offices/create', 'offices/join', 'logout']
+			],
 		],
 		'after'  => [
 			'toolbar',
@@ -61,11 +66,14 @@ class Filters extends BaseConfig
 	 * @var array
 	 */
 	public $filters = [
-		'isLoggedIn' => [
-			'before' => ['/offices', '/logout']
+		'isLogin' => [
+			'before' => ['offices', 'offices/*', 'logout']
 		],
-		'isNotLoggedIn' => [
-			'before' => ['/', '/register']
+		'isNotLogin' => [
+			'before' => ['', 'register']
 		],
+		'task' => [
+			'before' => ['offices/*/*']
+		]
 	];
 }

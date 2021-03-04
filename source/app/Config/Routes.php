@@ -32,15 +32,35 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // login routes
-$routes->get('/', 'Login::index');
-$routes->post('/', 'Login::auth');
+$routes->get('/', 'Auth::login');
+$routes->post('/', 'Auth::doLogin');
 // register routes
-$routes->get('/register', 'Register::index');
-$routes->post('/register', 'Register::save');
+$routes->get('/register', 'Auth::register');
+$routes->post('/register', 'Auth::doRegister');
 // office routes
 $routes->get('/offices', 'Office::index');
+$routes->post('/offices/join', 'Office::join');
+$routes->get('/offices/create', 'Office::create');
+$routes->post('/offices/create', 'Office::save');
+$routes->get('/offices/(:segment)', 'Office::detail/$1');
+$routes->delete('/offices/(:segment)', 'Office::leave/$1');
+$routes->get('/offices/(:segment)/edit', 'Office::edit/$1');
+$routes->post('/offices/(:segment)/edit', 'Office::update/$1');
+// task routes
+$routes->get('/offices/(:segment)/create-task', 'Task::create/$1');
+$routes->post('/offices/(:segment)/create-task', 'Task::save/$1');
+$routes->get('/offices/(:segment)/(:segment)', 'Task::detail/$1/$2');
+$routes->post('/offices/(:segment)/(:segment)/add-comment', 'Task::addComment/$2'); // comment routes
+$routes->delete('/offices/(:segment)/(:segment)', 'Task::delete/$1/$2');
+$routes->get('/offices/(:segment)/(:segment)/edit', 'Task::edit/$1/$2');
+$routes->post('/offices/(:segment)/(:segment)/edit', 'Task::update/$1/$2');
+// answer routes
+$routes->post('/offices/(:segment)/(:segment)/create-answer', 'Answer::save/$1/$2');
+$routes->delete('/offices/(:segment)/(:segment)/(:segment)', 'Answer::delete/$1/$2/$3');
+$routes->post('/offices/(:segment)/(:segment)/(:segment)/is-approved', 'Answer::approved/$2/$3');
+$routes->delete('/offices/(:segment)/(:segment)/(:segment)/is-approved', 'Answer::notApproved/$2/$3');
 // logout routes
-$routes->get('/logout', 'Login::logout');
+$routes->get('/logout', 'Auth::logout');
 
 /*
  * --------------------------------------------------------------------

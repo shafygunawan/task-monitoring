@@ -21,6 +21,7 @@ class AddOffices extends Migration
 			'officeDescription' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
+				'null' => true,
 			],
 			'officeIdentifier' => [
 				'type' => 'CHAR',

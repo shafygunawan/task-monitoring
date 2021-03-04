@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AffiliationModel;
+use App\Models\OfficeModel;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
@@ -52,19 +53,51 @@ class BaseController extends Controller
 	}
 
 	// custom functions
-	protected function getUser()
+	protected function getCurrentUser()
 	{
 		$userModel = new UserModel();
-		$user = $userModel->find(session('id'));
+		$currentUser = $userModel->find(session('id'));
 
-		return $user;
+		return $currentUser;
 	}
 
-	protected function getOffices()
+	public function getCurrentUserOffices($onlyMine = false)
 	{
 		$affiliationModel = new AffiliationModel();
-		$offices = $affiliationModel->where('userId', session('id'))->join('offices', 'offices.officeId = affiliations.affiliationId')->findAll();
 
-		return $offices;
+		// cek apakah ingin mengembalikan kantor dengan pengguna saat ini sebagai member
+		if (!$onlyMine) {
+			$currentUserOffices = $affiliationModel->where([
+				'userId' => session('id'),
+				'affiliationLevel' => 'member'
+			])->join('offices', 'offices.officeId = affiliations.officeId')->findAll();
+
+			return $currentUserOffices;
+		}
+
+		// dapatkan kantor dengan pengguna saat ini sebagai admin
+		$currentUserOffices = $affiliationModel->where([
+			'userId' => session('id'),
+			'affiliationLevel' => 'admin'
+		])->join('offices', 'offices.officeId = affiliations.officeId')->findAll();
+
+		return $currentUserOffices;
+	}
+
+	protected function currentUserIsAdmin($officeIdentifier)
+	{
+		// dapatkan kantor
+		$officeModel = new OfficeModel();
+		$office = $officeModel->where('officeIdentifier', $officeIdentifier)->first();
+
+		// dapatkan keanggotaan user saat ini pada kantor
+		$affiliationModel = new AffiliationModel();
+		$affiliation = $affiliationModel->where([
+			'userId' => session('id'),
+			'officeId' => $office['officeId']
+		])->first();
+
+		// kembalikan boolean apakah user saat ini admin kantor
+		return $affiliation['affiliationLevel'] === 'admin';
 	}
 }

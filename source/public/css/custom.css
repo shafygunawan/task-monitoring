@@ -1,0 +1,19 @@
+.offices-card {
+    min-height: 200px;
+}
+
+.office-card{
+    min-height: 150px;
+}
+
+@media only screen and (max-width: 1119px) {
+    .offices-card{
+        min-height: 175px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .office-card{
+        min-height: 125px;
+    }
+}
