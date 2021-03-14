@@ -3,8 +3,6 @@ Aplikasi berbasis web yang berfungsi untuk memonitoring tugas. Aplikasi ini dibu
 
 *Aplikasi ini dibangun dengan [CodeIgniter 4](https://codeigniter.com/) dan [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/)*
 
----
-
 ## Requirements
 * PHP Versi 7.3+
 
