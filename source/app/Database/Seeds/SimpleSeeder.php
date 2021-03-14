@@ -28,9 +28,9 @@ class SimpleSeeder extends Seeder
 				'userUpdatedAt'    => $currentDateTime,
 			],
 			[
-				'userFirstName' => 'Mukhlis',
-				'userLastName'    => 'Rahman',
-				'userEmail'    => 'mukhlisrahman@gmail.com',
+				'userFirstName' => 'User',
+				'userLastName'    => 'Name',
+				'userEmail'    => 'admin@gmail.com',
 				'userPassword'    => $userPassword,
 				'userCreatedAt'    => $currentDateTime,
 				'userUpdatedAt'    => $currentDateTime,
