@@ -30,7 +30,7 @@ php spark serve
 
 Hasil akhirnya akan seperti ini :
 
-![starting server result](/img/starting-server-result.png)
+![starting server result](/img/starting-server-result.PNG)
 
 buka link (dalam kotak merah) tersebut pada web browser.
 
